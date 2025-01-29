@@ -1,0 +1,11 @@
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+[workspace.dependencies]
+anyhow = "1.0.95"
+aoc-cli = { version = "0.1.0", path = "aoc-cli" }
+
+[workspace]
+members = ["aoc-cli"]
+resolver = "2"
