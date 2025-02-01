@@ -67,13 +67,10 @@ fn reduce_numbers_to_rating<'a>(
     assert!(numbers.len() > 1);
     assert!(bit_to_check < numbers[0].len());
 
-    let ones_count = numbers.iter().fold(0, |acc, line| {
-        if line.as_bytes()[bit_to_check] == b'1' {
-            acc + 1
-        } else {
-            acc
-        }
-    });
+    let ones_count = numbers
+        .iter()
+        .filter(|line| line.as_bytes()[bit_to_check] == b'1')
+        .count();
 
     let value_to_match = match (tie_breaker, ones_count.cmp(&(numbers.len() - ones_count))) {
         (0, Ordering::Equal) => b'0',

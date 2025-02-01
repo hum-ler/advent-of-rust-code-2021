@@ -16,9 +16,7 @@ fn part_1(input: &str) -> Result<usize> {
         .map(str::parse::<usize>)
         .collect::<Result<Vec<_>, _>>()?;
 
-    Ok(depths
-        .windows(2)
-        .fold(0, |acc, pair| if pair[0] < pair[1] { acc + 1 } else { acc }))
+    Ok(depths.windows(2).filter(|pair| pair[0] < pair[1]).count())
 }
 
 fn part_2(input: &str) -> Result<usize> {
