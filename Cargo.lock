@@ -168,6 +168,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "day-15"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "aoc-cli",
+ "pathfinding",
+]
+
+[[package]]
 name = "day-2"
 version = "0.1.0"
 dependencies = [
