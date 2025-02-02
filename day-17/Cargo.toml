@@ -1,0 +1,9 @@
+[package]
+name = "day-17"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+aoc-cli.workspace = true
+regex = "1.11.1"
