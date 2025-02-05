@@ -1,3 +1,5 @@
+use std::cmp::max;
+
 use anyhow::{anyhow, Result};
 
 use aoc_cli::{get_part, Part};
@@ -42,9 +44,7 @@ fn part_2(input: &str) -> Result<u64> {
 
             let magnitude = magnitude(&add(first_pair.clone(), second_pair.clone())?)?;
 
-            if magnitude > max_magnitude {
-                max_magnitude = magnitude;
-            }
+            max_magnitude = max(max_magnitude, magnitude);
         }
     }
 

@@ -1,4 +1,7 @@
-use std::collections::HashSet;
+use std::{
+    cmp::{max, min},
+    collections::HashSet,
+};
 
 use anyhow::{anyhow, Result};
 
@@ -101,21 +104,10 @@ fn print_paper(dots: &HashSet<Coord>) -> String {
     let ((min_x, min_y), (max_x, max_y)) = dots.iter().fold(
         ((usize::MAX, usize::MAX), (usize::MIN, usize::MIN)),
         |mut acc, dot| {
-            if dot.0 < acc.0 .0 {
-                acc.0 .0 = dot.0;
-            }
-
-            if dot.0 > acc.1 .0 {
-                acc.1 .0 = dot.0;
-            }
-
-            if dot.1 < acc.0 .1 {
-                acc.0 .1 = dot.1;
-            }
-
-            if dot.1 > acc.1 .1 {
-                acc.1 .1 = dot.1;
-            }
+            acc.0 .0 = min(acc.0 .0, dot.0);
+            acc.0 .1 = min(acc.0 .1, dot.1);
+            acc.1 .0 = max(acc.1 .0, dot.0);
+            acc.1 .1 = max(acc.1 .1, dot.1);
 
             acc
         },

@@ -1,4 +1,7 @@
-use std::collections::HashMap;
+use std::{
+    cmp::{max, min},
+    collections::HashMap,
+};
 
 use anyhow::{anyhow, Result};
 
@@ -42,11 +45,7 @@ fn part_1(input: &str) -> Result<u64> {
         }
     }
 
-    if player_scores.0 < player_scores.1 {
-        Ok(player_scores.0 * die_roll_count)
-    } else {
-        Ok(player_scores.1 * die_roll_count)
-    }
+    Ok(min(player_scores.0, player_scores.1) * die_roll_count)
 }
 
 fn part_2(input: &str) -> Result<u64> {
@@ -54,11 +53,7 @@ fn part_2(input: &str) -> Result<u64> {
 
     let player_wins = play_game(player_pos);
 
-    if player_wins.0 > player_wins.1 {
-        Ok(player_wins.0)
-    } else {
-        Ok(player_wins.1)
-    }
+    Ok(max(player_wins.0, player_wins.1))
 }
 
 fn parse_input_into_starting_positions(input: &str) -> Result<(u64, u64)> {
