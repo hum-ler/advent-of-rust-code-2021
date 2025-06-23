@@ -198,14 +198,7 @@ fn split(pair: &mut Vec<Symbol>) -> Result<bool> {
         };
 
         pair[to_split] = Symbol::End;
-        pair.insert(
-            to_split,
-            Symbol::Number(if number % 2 == 1 {
-                (number + 1) / 2
-            } else {
-                number / 2
-            }),
-        );
+        pair.insert(to_split, Symbol::Number(number.div_ceil(2)));
         pair.insert(to_split, Symbol::Separator);
         pair.insert(to_split, Symbol::Number(number / 2));
         pair.insert(to_split, Symbol::Start);
