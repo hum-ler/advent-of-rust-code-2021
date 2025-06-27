@@ -1,15 +1,15 @@
 use std::collections::HashMap;
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use pathfinding::prelude::count_paths;
 
-use aoc_cli::{get_part, Part};
+use cli::{Part, get_part};
 
 fn main() {
     match get_part("inputs/day-12.txt") {
         Ok(Part::Part1(input)) => println!("{:?}", part_1(&input)),
         Ok(Part::Part2(input)) => println!("{:?}", part_2(&input)),
-        Err(error) => println!("{:?}", error),
+        Err(error) => println!("{error:?}"),
     }
 }
 
@@ -148,7 +148,7 @@ fn successors_with_double_visit<'a>(
 
 #[cfg(test)]
 mod tests {
-    use aoc_cli::trim_input;
+    use cli::trim_newlines;
 
     use super::*;
 
@@ -198,42 +198,42 @@ start-RW
 
     #[test]
     fn example_1a() -> Result<()> {
-        assert_eq!(part_1(trim_input(EXAMPLE_INPUT_A))?, 10);
+        assert_eq!(part_1(trim_newlines(EXAMPLE_INPUT_A))?, 10);
 
         Ok(())
     }
 
     #[test]
     fn example_1b() -> Result<()> {
-        assert_eq!(part_1(trim_input(EXAMPLE_INPUT_B))?, 19);
+        assert_eq!(part_1(trim_newlines(EXAMPLE_INPUT_B))?, 19);
 
         Ok(())
     }
 
     #[test]
     fn example_1c() -> Result<()> {
-        assert_eq!(part_1(trim_input(EXAMPLE_INPUT_C))?, 226);
+        assert_eq!(part_1(trim_newlines(EXAMPLE_INPUT_C))?, 226);
 
         Ok(())
     }
 
     #[test]
     fn example_2a() -> Result<()> {
-        assert_eq!(part_2(trim_input(EXAMPLE_INPUT_A))?, 36);
+        assert_eq!(part_2(trim_newlines(EXAMPLE_INPUT_A))?, 36);
 
         Ok(())
     }
 
     #[test]
     fn example_2b() -> Result<()> {
-        assert_eq!(part_2(trim_input(EXAMPLE_INPUT_B))?, 103);
+        assert_eq!(part_2(trim_newlines(EXAMPLE_INPUT_B))?, 103);
 
         Ok(())
     }
 
     #[test]
     fn example_2c() -> Result<()> {
-        assert_eq!(part_2(trim_input(EXAMPLE_INPUT_C))?, 3509);
+        assert_eq!(part_2(trim_newlines(EXAMPLE_INPUT_C))?, 3509);
 
         Ok(())
     }

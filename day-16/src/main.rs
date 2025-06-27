@@ -1,12 +1,12 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 
-use aoc_cli::{get_part, Part};
+use cli::{Part, get_part};
 
 fn main() {
     match get_part("inputs/day-16.txt") {
         Ok(Part::Part1(input)) => println!("{:?}", part_1(&input)),
         Ok(Part::Part2(input)) => println!("{:?}", part_2(&input)),
-        Err(error) => println!("{:?}", error),
+        Err(error) => println!("{error:?}"),
     }
 }
 
@@ -264,7 +264,7 @@ fn bin_to_u64(bits: &[u8]) -> Result<u64> {
 
 #[cfg(test)]
 mod tests {
-    use aoc_cli::trim_input;
+    use cli::trim_newlines;
 
     use super::*;
 
@@ -272,7 +272,7 @@ mod tests {
     fn example_1a() -> Result<()> {
         let input = "8A004A801A8002F478";
 
-        assert_eq!(part_1(trim_input(input))?, 16);
+        assert_eq!(part_1(trim_newlines(input))?, 16);
 
         Ok(())
     }
@@ -281,7 +281,7 @@ mod tests {
     fn example_1b() -> Result<()> {
         let input = "620080001611562C8802118E34";
 
-        assert_eq!(part_1(trim_input(input))?, 12);
+        assert_eq!(part_1(trim_newlines(input))?, 12);
 
         Ok(())
     }
@@ -290,7 +290,7 @@ mod tests {
     fn example_1c() -> Result<()> {
         let input = "C0015000016115A2E0802F182340";
 
-        assert_eq!(part_1(trim_input(input))?, 23);
+        assert_eq!(part_1(trim_newlines(input))?, 23);
 
         Ok(())
     }
@@ -299,7 +299,7 @@ mod tests {
     fn example_1d() -> Result<()> {
         let input = "A0016C880162017C3686B18A3D4780";
 
-        assert_eq!(part_1(trim_input(input))?, 31);
+        assert_eq!(part_1(trim_newlines(input))?, 31);
 
         Ok(())
     }
@@ -308,7 +308,7 @@ mod tests {
     fn example_2a() -> Result<()> {
         let input = "C200B40A82";
 
-        assert_eq!(part_2(trim_input(input))?, 3);
+        assert_eq!(part_2(trim_newlines(input))?, 3);
 
         Ok(())
     }
@@ -317,7 +317,7 @@ mod tests {
     fn example_2b() -> Result<()> {
         let input = "04005AC33890";
 
-        assert_eq!(part_2(trim_input(input))?, 54);
+        assert_eq!(part_2(trim_newlines(input))?, 54);
 
         Ok(())
     }
@@ -326,7 +326,7 @@ mod tests {
     fn example_2c() -> Result<()> {
         let input = "880086C3E88112";
 
-        assert_eq!(part_2(trim_input(input))?, 7);
+        assert_eq!(part_2(trim_newlines(input))?, 7);
 
         Ok(())
     }
@@ -335,7 +335,7 @@ mod tests {
     fn example_2d() -> Result<()> {
         let input = "CE00C43D881120";
 
-        assert_eq!(part_2(trim_input(input))?, 9);
+        assert_eq!(part_2(trim_newlines(input))?, 9);
 
         Ok(())
     }
@@ -344,7 +344,7 @@ mod tests {
     fn example_2e() -> Result<()> {
         let input = "D8005AC2A8F0";
 
-        assert_eq!(part_2(trim_input(input))?, 1);
+        assert_eq!(part_2(trim_newlines(input))?, 1);
 
         Ok(())
     }
@@ -353,7 +353,7 @@ mod tests {
     fn example_2f() -> Result<()> {
         let input = "F600BC2D8F";
 
-        assert_eq!(part_2(trim_input(input))?, 0);
+        assert_eq!(part_2(trim_newlines(input))?, 0);
 
         Ok(())
     }
@@ -362,7 +362,7 @@ mod tests {
     fn example_2g() -> Result<()> {
         let input = "9C005AC2F8F0";
 
-        assert_eq!(part_2(trim_input(input))?, 0);
+        assert_eq!(part_2(trim_newlines(input))?, 0);
 
         Ok(())
     }
@@ -371,7 +371,7 @@ mod tests {
     fn example_2h() -> Result<()> {
         let input = "9C0141080250320F1802104A08";
 
-        assert_eq!(part_2(trim_input(input))?, 1);
+        assert_eq!(part_2(trim_newlines(input))?, 1);
 
         Ok(())
     }

@@ -1,6 +1,6 @@
-use std::fs::read_to_string;
+use std::fs;
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use clap::Parser;
 
 #[derive(Parser)]
@@ -20,17 +20,17 @@ pub enum Part {
 pub fn get_part(default_input: &str) -> Result<Part> {
     let args = Args::parse();
 
-    let path = args.input.unwrap_or(default_input.to_string());
-    let input = trim_input(&read_to_string(path)?).to_string();
+    let path = args.input.unwrap_or(String::from(default_input));
+    let input = String::from(trim_newlines(&fs::read_to_string(path)?));
 
     match args.part {
         1 => Ok(Part::Part1(input)),
         2 => Ok(Part::Part2(input)),
-        x => Err(anyhow!("Invalid part number: {}", x)),
+        _ => Err(anyhow!("Invalid part number: {}", args.part)),
     }
 }
 
 /// Trims newlines from the start and the end of the input string.
-pub fn trim_input(input: &str) -> &str {
+pub fn trim_newlines(input: &str) -> &str {
     input.trim_start_matches("\n").trim_end_matches("\n")
 }

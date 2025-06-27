@@ -1,12 +1,12 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 
-use aoc_cli::{get_part, Part};
+use cli::{Part, get_part};
 
 fn main() {
     match get_part("inputs/day-11.txt") {
         Ok(Part::Part1(input)) => println!("{:?}", part_1(&input)),
         Ok(Part::Part2(input)) => println!("{:?}", part_2(&input)),
-        Err(error) => println!("{:?}", error),
+        Err(error) => println!("{error:?}"),
     }
 }
 
@@ -153,7 +153,7 @@ fn reset_flashes(grid: &mut Grid) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use aoc_cli::trim_input;
+    use cli::trim_newlines;
 
     use super::*;
 
@@ -172,14 +172,14 @@ mod tests {
 
     #[test]
     fn example_1() -> Result<()> {
-        assert_eq!(part_1(trim_input(EXAMPLE_INPUT))?, 1656);
+        assert_eq!(part_1(trim_newlines(EXAMPLE_INPUT))?, 1656);
 
         Ok(())
     }
 
     #[test]
     fn example_2() -> Result<()> {
-        assert_eq!(part_2(trim_input(EXAMPLE_INPUT))?, 195);
+        assert_eq!(part_2(trim_newlines(EXAMPLE_INPUT))?, 195);
 
         Ok(())
     }

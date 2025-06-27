@@ -1,14 +1,14 @@
 use std::{ops::RangeInclusive, str::FromStr};
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 
-use aoc_cli::{get_part, Part};
+use cli::{Part, get_part};
 
 fn main() {
     match get_part("inputs/day-22.txt") {
         Ok(Part::Part1(input)) => println!("{:?}", part_1(&input)),
         Ok(Part::Part2(input)) => println!("{:?}", part_2(&input)),
-        Err(error) => println!("{:?}", error),
+        Err(error) => println!("{error:?}"),
     }
 }
 
@@ -255,7 +255,7 @@ fn parse_input_into_reboot_steps(input: &str) -> Result<Vec<RebootStep>> {
 
 #[cfg(test)]
 mod tests {
-    use aoc_cli::trim_input;
+    use cli::trim_newlines;
 
     use super::*;
 
@@ -286,7 +286,7 @@ on x=-54112..-39298,y=-85059..-49293,z=-27449..7877
 on x=967..23432,y=45373..81175,z=27513..53682
 ";
 
-        assert_eq!(part_1(trim_input(input))?, 590784);
+        assert_eq!(part_1(trim_newlines(input))?, 590784);
 
         Ok(())
     }
@@ -356,7 +356,7 @@ on x=-53470..21291,y=-120233..-33476,z=-44150..38147
 off x=-93533..-4276,y=-16170..68771,z=-104985..-24507
 ";
 
-        assert_eq!(part_2(trim_input(input))?, 2758514936282235);
+        assert_eq!(part_2(trim_newlines(input))?, 2758514936282235);
 
         Ok(())
     }

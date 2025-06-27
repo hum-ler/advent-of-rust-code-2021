@@ -3,15 +3,15 @@ use std::{
     collections::HashSet,
 };
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 
-use aoc_cli::{get_part, Part};
+use cli::{Part, get_part};
 
 fn main() {
     match get_part("inputs/day-13.txt") {
         Ok(Part::Part1(input)) => println!("{:?}", part_1(&input)),
         Ok(Part::Part2(input)) => println!("{:?}", part_2(&input)),
-        Err(error) => println!("{:?}", error),
+        Err(error) => println!("{error:?}"),
     }
 }
 
@@ -104,10 +104,10 @@ fn print_paper(dots: &HashSet<Coord>) -> String {
     let ((min_x, min_y), (max_x, max_y)) = dots.iter().fold(
         ((usize::MAX, usize::MAX), (usize::MIN, usize::MIN)),
         |mut acc, dot| {
-            acc.0 .0 = min(acc.0 .0, dot.0);
-            acc.0 .1 = min(acc.0 .1, dot.1);
-            acc.1 .0 = max(acc.1 .0, dot.0);
-            acc.1 .1 = max(acc.1 .1, dot.1);
+            acc.0.0 = min(acc.0.0, dot.0);
+            acc.0.1 = min(acc.0.1, dot.1);
+            acc.1.0 = max(acc.1.0, dot.0);
+            acc.1.1 = max(acc.1.1, dot.1);
 
             acc
         },
@@ -133,7 +133,7 @@ fn print_paper(dots: &HashSet<Coord>) -> String {
 
 #[cfg(test)]
 mod tests {
-    use aoc_cli::trim_input;
+    use cli::trim_newlines;
 
     use super::*;
 
@@ -163,7 +163,7 @@ fold along x=5
 
     #[test]
     fn example_1() -> Result<()> {
-        assert_eq!(part_1(trim_input(EXAMPLE_INPUT))?, 17);
+        assert_eq!(part_1(trim_newlines(EXAMPLE_INPUT))?, 17);
 
         Ok(())
     }
